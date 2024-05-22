@@ -1,7 +1,6 @@
 <template>
   <file-upload
     name="file"
-    class="bg-primary-500"
     mode="basic"
     accepts=".csv"
     choose-label="Lataa cvs"
