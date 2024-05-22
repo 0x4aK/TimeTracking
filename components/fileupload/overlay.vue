@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="dragOver"
-      class="fixed inset-0 bg-blue-900/20"
+      class="fixed inset-0 bg-primary/20"
       @drop.prevent="handleFileDrop"
       @dragover.prevent="handleDrag"
       @dragexit="dragOver = false"
