@@ -1,7 +1,7 @@
 <template>
-  <card>
+  <p-card>
     <template #content>
-      <listbox
+      <p-listbox
         v-model="selected"
         :options="Array.from(workers.values())"
         data-key="id"
@@ -14,7 +14,7 @@
         <fileupload-input />
       </div>
     </template>
-  </card>
+  </p-card>
 </template>
 
 <script lang="ts" setup>

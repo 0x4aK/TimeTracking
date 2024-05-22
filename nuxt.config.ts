@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     options: {
       unstyled: true,
     },
+    components: {
+      prefix: "P",
+      include: "*",
+    },
     importPT: { as: "Aura", from: "~/presets/aura" },
   },
 

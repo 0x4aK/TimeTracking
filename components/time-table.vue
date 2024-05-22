@@ -1,11 +1,11 @@
 <template>
-  <card>
+  <p-card>
     <template #content>
-      <Fieldset legend="Työajat">
+      <p-fieldset legend="Työajat">
         <div>ASDASD</div>
-      </Fieldset>
+      </p-fieldset>
     </template>
-  </card>
+  </p-card>
 </template>
 
 <script lang="ts" setup></script>

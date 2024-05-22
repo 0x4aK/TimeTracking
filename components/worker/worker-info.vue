@@ -1,11 +1,11 @@
 <template>
-  <card>
+  <p-card>
     <template #content>
-      <Fieldset legend="Tiedot">
+      <p-fieldset legend="Tiedot">
         {{ selected }}
-      </Fieldset>
+      </p-fieldset>
     </template>
-  </card>
+  </p-card>
 </template>
 
 <script lang="ts" setup>

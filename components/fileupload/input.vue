@@ -1,5 +1,5 @@
 <template>
-  <file-upload
+  <p-file-upload
     name="file"
     mode="basic"
     accepts=".csv"

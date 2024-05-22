@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="loading" class="fixed inset-0 flex items-center bg-gray-600/50">
-      <progress-spinner />
+      <p-progress-spinner />
     </div>
   </transition>
 </template>
