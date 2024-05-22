@@ -1,4 +1,7 @@
-type WorkHours = Map<string, { start: Date; end: Date }[]>;
+import { parse as parseDate } from "date-fns";
+
+export type TimeSpan = { id: number; start: Date; end: Date };
+type WorkHours = Map<string, TimeSpan[]>;
 type WorkerData = { id: number; name: string; hours: WorkHours };
 export type Workers = Map<number, WorkerData>;
 
@@ -14,11 +17,10 @@ function parseWorker(words: string[]): [number, WorkerData] {
 
 type TimeStamp = { date: Date; type: EventType; id: number };
 function parseTimestamp(words: string[]): TimeStamp {
-  const [timestampRaw, event, , , id, , , ,] = words;
-  const [time, date] = timestampRaw.split(" ");
+  const [timestamp, event, , , id, , , ,] = words;
 
   return {
-    date: new Date([date.split(".").reverse().join("-"), "T", time].join("")),
+    date: parseDate(timestamp, "kk:mm:ss dd.MM.yyyy", new Date()),
     type: event === "1" ? EventType.ENTRY : EventType.EXIT,
     id: +id,
   };
@@ -41,6 +43,7 @@ function parseData(data: string): Workers {
   }
 
   const timestampIter = timestamps[Symbol.iterator]();
+  let _id = 0;
 
   for (const entryTimeStamp of timestampIter) {
     if (entryTimeStamp.type !== EventType.ENTRY) continue;
@@ -52,7 +55,7 @@ function parseData(data: string): Workers {
       if (exitTimeStamp.type !== EventType.EXIT) continue;
 
       const date = entryTimeStamp.date.toDateString();
-      const span = { start: entryTimeStamp.date, end: exitTimeStamp.date };
+      const span = { id: _id++, start: entryTimeStamp.date, end: exitTimeStamp.date };
 
       const hoursIn = workerData.hours.get(date);
       if (hoursIn) hoursIn.push(span);
@@ -62,15 +65,6 @@ function parseData(data: string): Workers {
     }
   }
   return workers;
-}
-
-function readFile(file: File, encoding: string = "UTF-8"): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = ({ target }) => resolve(target?.result as string);
-    reader.onerror = reject;
-    reader.readAsText(file, encoding);
-  });
 }
 
 const setWorkersFromCSV = async (file: File) => {
@@ -92,4 +86,15 @@ export const useWorkers = () => ({
   workers,
   selected,
   setWorkersFromCSV,
+});
+
+const disabledSpans = reactive<Set<number>>(new Set());
+const selectedHours = computed(() => (selected.value ? selected.value.hours : null));
+
+export const useWorkHours = () => ({
+  selectedHours,
+  removeSpan: disabledSpans.delete,
+  addSpan: disabledSpans.add,
+  toggleSpan: (spanId: number) =>
+    disabledSpans.has(spanId) ? disabledSpans.delete(spanId) : disabledSpans.add(spanId),
 });
