@@ -21,9 +21,9 @@ import { mdiFileUploadOutline } from "@mdi/js";
 const dragOver = ref(false);
 useEventListener(document, "dragenter", () => (dragOver.value = true));
 
-function handleDrag(e: DragEvent) {
-  if (!e.dataTransfer) return;
-  e.dataTransfer.dropEffect = e.dataTransfer.items.length === 1 ? "copy" : "none";
+function handleDrag({ dataTransfer }: DragEvent) {
+  if (!dataTransfer) return;
+  dataTransfer.dropEffect = dataTransfer.items.length === 1 ? "copy" : "none";
 }
 
 const { setWorkersFromCSV } = useWorkers();
