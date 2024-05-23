@@ -2,10 +2,11 @@
   <p-card>
     <template #content>
       <p-listbox
-        v-model="selected"
+        v-model="selectedWorker"
         :options="Array.from(workers.values())"
         data-key="id"
         option-label="name"
+        option-value="id"
         empty-message="Ei työntekijöitä"
       />
     </template>
@@ -18,5 +19,5 @@
 </template>
 
 <script lang="ts" setup>
-const { workers, selected } = useWorkers();
+const { workers, selectedWorker } = useWorkers();
 </script>

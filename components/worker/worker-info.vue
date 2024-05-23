@@ -1,15 +1,11 @@
 <template>
   <p-card>
-    <template #content>
-      <p-fieldset legend="Tiedot">
-        {{ selected }}
-      </p-fieldset>
-    </template>
+    <template #content> {{ selectedWorkerData }} </template>
   </p-card>
 </template>
 
 <script lang="ts" setup>
-const { selected } = useWorkers();
+const { selectedWorkerData } = useWorkers();
 </script>
 
 <style lang="scss" scoped></style>
