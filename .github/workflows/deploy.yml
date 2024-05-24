@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env: NUXT_APP_BASE_URL=TimeTracking
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
