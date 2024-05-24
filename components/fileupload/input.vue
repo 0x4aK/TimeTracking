@@ -5,7 +5,8 @@
     accepts=".csv"
     choose-label="Lataa cvs"
     auto
-    @upload="(e) => setWorkersFromCSV(Array.isArray(e.files) ? e.files[0] : e.files)"
+    custom-upload
+    @uploader="(e) => setWorkersFromCSV(Array.isArray(e.files) ? e.files[0] : e.files)"
   />
 </template>
 
