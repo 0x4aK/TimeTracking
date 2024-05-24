@@ -111,11 +111,11 @@ const spansByWeek = computed(() => {
   }, new Map<number, TimeSpan[]>());
 });
 const selectedWeeksSpans = computed(() => {
-  return (selectedWeek.value && spansByWeek.value?.get(selectedWeek.value)) || null;
+  return (selectedWeek.value !== null && spansByWeek.value?.get(selectedWeek.value)) || null;
 });
 
 const selectedDay = ref<number | null>(null);
-const selectedWeeksSpansByDay = computed(() => {
+const spansByDay = computed(() => {
   if (!selectedWeeksSpans.value) return null;
   return selectedWeeksSpans.value.reduce((spans, span) => {
     const day = getDay(span.start);
@@ -123,12 +123,16 @@ const selectedWeeksSpansByDay = computed(() => {
     return spans;
   }, new Map<number, TimeSpan[]>());
 });
+const selectedDaysSpans = computed(() => {
+  return (selectedDay.value !== null && spansByDay.value?.get(selectedDay.value)) || null;
+});
 
 export const useWorkHours = () => ({
   timeSpans,
   selectedWeek,
   selectedDay,
   spansByWeek,
+  spansByDay,
   selectedWeeksSpans,
-  selectedWeeksSpansByDay,
+  selectedDaysSpans,
 });

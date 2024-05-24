@@ -1,6 +1,6 @@
 <template>
   <button
-    class="absolute z-50 min-h-4 w-9/12 max-w-full rounded-md text-xs"
+    class="absolute z-50 min-h-4 w-9/12 max-w-full overflow-clip whitespace-break-spaces rounded-md text-xs"
     :class="[span.active ? 'bg-primary' : 'bg-primary-highlight-inverse']"
     :style="spanStyle"
     @click="$emit('toggle')"

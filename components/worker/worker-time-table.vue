@@ -1,7 +1,7 @@
 <template>
   <p-card>
-    <template #content>
-      <div>
+    <template v-if="selectedWorkerData" #content>
+      <div class="flex justify-between gap-4">
         <p-dropdown
           v-model="selectedWeek"
           :options="weekSelectorOptions"
@@ -14,11 +14,15 @@
       </div>
       <time-table />
     </template>
+    <template v-else #content>
+      <div class="flex h-full items-center justify-center font-semibold">Ei valittua työntekijää</div>
+    </template>
   </p-card>
 </template>
 
 <script lang="ts" setup>
 const { spansByWeek, selectedWeek } = useWorkHours();
+const { selectedWorkerData } = useWorkers();
 
 const weekSelectorOptions = computed(() => {
   if (!spansByWeek.value) return undefined;

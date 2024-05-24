@@ -1,6 +1,6 @@
 <template>
   <main
-    class="grid min-h-dvh grid-flow-row auto-rows-min grid-cols-5 gap-2 bg-gradient-to-tr from-teal-800 to-blue-600 p-2 md:p-6"
+    class="grid min-h-dvh grid-flow-row auto-rows-min grid-cols-5 gap-2 bg-gradient-to-t from-primary-800 to-primary-400 p-2 md:p-6"
   >
     <worker-selector class="col-span-5 sm:col-span-2" />
     <worker-info class="col-span-5 sm:col-span-3" />

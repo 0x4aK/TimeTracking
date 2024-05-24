@@ -1,13 +1,13 @@
 <template>
-  <p-data-table :value="timeTableData" :pt="{ bodyRow: 'h-40', column: 'max-w-min' }">
-    <template #empty><div class="text-center">Valitse työntekijä ja viikko</div></template>
+  <p-data-table :value="tableData" :pt="{ bodyRow: 'h-40', column: 'max-w-min' }">
+    <template #empty><div class="text-center">Valitse viikko</div></template>
     <p-column
       field="clock"
       header="Klo"
       :pt="{ headerCell: 'max-w-min !px-2', bodyCell: 'max-w-min align-top !px-2' }"
     />
     <p-column
-      v-for="day of weekDays"
+      v-for="day of WEEKDAYS"
       :key="day.day"
       :field="day.day"
       :header="day.label"
@@ -23,20 +23,10 @@
 <script lang="ts" setup>
 import { getDay, getHours } from "date-fns";
 
-const weekDays = [
-  { day: "1", label: "Ma" },
-  { day: "2", label: "Ti" },
-  { day: "3", label: "Ke" },
-  { day: "4", label: "To" },
-  { day: "5", label: "Pe" },
-  { day: "6", label: "La" },
-  { day: "0", label: "Su" },
-] as const;
-
 const { selectedWeeksSpans } = useWorkHours();
 
-const timeTableData = computed(() => {
-  if (!selectedWeeksSpans.value) return undefined;
+const tableData = computed(() => {
+  if (!selectedWeeksSpans.value) return null;
 
   const [earliestHour, latestHour] = selectedWeeksSpans.value
     .reduce(
@@ -53,7 +43,7 @@ const timeTableData = computed(() => {
       .fill(null)
       .map((_, index) => [
         earliestHour + index,
-        Object.fromEntries(weekDays.map((day) => [+day.day, new Array<TimeSpan>()])),
+        Object.fromEntries(WEEKDAYS.map((day) => [+day.day, new Array<TimeSpan>()])),
       ]),
   );
 
