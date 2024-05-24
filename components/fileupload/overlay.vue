@@ -11,12 +11,17 @@
         <svg-icon :path="mdiFileUploadOutline" size="8" />
         <span class="text-xl font-semibold">Lataa tiedosto tiputtamalla tähän</span>
       </div>
+      <div class="absolute right-4 top-4">
+        <p-button text @click="dragOver = false">
+          <svg-icon class="text-neutral-400" :path="mdiCloseThick" :size="3" />
+        </p-button>
+      </div>
     </div>
   </transition>
 </template>
 
 <script lang="ts" setup>
-import { mdiFileUploadOutline } from "@mdi/js";
+import { mdiCloseThick, mdiFileUploadOutline } from "@mdi/js";
 
 const dragOver = ref(false);
 useEventListener(document, "dragenter", () => (dragOver.value = true));
