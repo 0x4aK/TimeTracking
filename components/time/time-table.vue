@@ -1,41 +1,23 @@
 <template>
-  <p-card>
-    <template #content>
-      <p-dropdown
-        v-model="selectedWeek"
-        :options="weekSelectorOptions"
-        option-label="label"
-        option-value="value"
-        empty-message="Ei valittavia viikkoja"
-        placeholder="Viikko"
-      />
-
-      <p-data-table :value="timeTableData" :pt="{ bodyRow: 'h-40', column: 'max-w-min' }">
-        <template #empty><div class="text-center">Valitse työntekijä ja viikko</div></template>
-        <p-column
-          field="clock"
-          header="Klo"
-          :pt="{ headerCell: 'max-w-min !px-2', bodyCell: 'max-w-min align-top !px-2' }"
-        />
-        <p-column
-          v-for="day of weekDays"
-          :key="day.day"
-          :field="day.day"
-          :header="day.label"
-          :pt="{ bodyCell: 'relative' }"
-        >
-          <template #body="{ data, field }">
-            <time-span
-              v-for="span in data[field]"
-              :key="span.spanId"
-              :span="span"
-              @toggle="span.active = !span.active"
-            />
-          </template>
-        </p-column>
-      </p-data-table>
-    </template>
-  </p-card>
+  <p-data-table :value="timeTableData" :pt="{ bodyRow: 'h-40', column: 'max-w-min' }">
+    <template #empty><div class="text-center">Valitse työntekijä ja viikko</div></template>
+    <p-column
+      field="clock"
+      header="Klo"
+      :pt="{ headerCell: 'max-w-min !px-2', bodyCell: 'max-w-min align-top !px-2' }"
+    />
+    <p-column
+      v-for="day of weekDays"
+      :key="day.day"
+      :field="day.day"
+      :header="day.label"
+      :pt="{ bodyCell: 'relative' }"
+    >
+      <template #body="{ data, field }">
+        <time-span v-for="span in data[field]" :key="span.spanId" :span="span" @toggle="span.active = !span.active" />
+      </template>
+    </p-column>
+  </p-data-table>
 </template>
 
 <script lang="ts" setup>
@@ -51,12 +33,7 @@ const weekDays = [
   { day: "0", label: "Su" },
 ] as const;
 
-const { spansByWeek, selectedWeek, selectedWeeksSpans } = useWorkHours();
-
-const weekSelectorOptions = computed(() => {
-  if (!spansByWeek.value) return undefined;
-  return Array.from(spansByWeek.value.keys()).map((week) => ({ value: week, label: `Viikko ${week}` }));
-});
+const { selectedWeeksSpans } = useWorkHours();
 
 const timeTableData = computed(() => {
   if (!selectedWeeksSpans.value) return undefined;

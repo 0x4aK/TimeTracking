@@ -4,7 +4,7 @@
   >
     <worker-selector class="col-span-5 sm:col-span-2" />
     <worker-info class="col-span-5 sm:col-span-3" />
-    <time-table class="col-span-5" />
+    <worker-time-table class="col-span-5" />
   </main>
 
   <fileupload-overlay />
