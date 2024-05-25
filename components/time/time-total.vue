@@ -1,27 +1,23 @@
 <template>
-  <div v-if="totalTime">Kokonais aikaa viikolta: {{ totalTime }}</div>
+  <div v-if="totalTime">
+    <slot name="label">{{ label && `${label}: ` }}</slot>
+    <slot name="time" :value="totalTime">{{ totalTime }}</slot>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { differenceInSeconds } from "date-fns";
 
-const { selectedWeekSpans } = useTimeSpans();
+const props = defineProps<{ spans: TimeSpan[] | null | undefined; label?: string }>();
 
 const totalTime = computed(() => {
-  if (!selectedWeekSpans.value) return null;
+  if (!props.spans) return null;
 
-  const seconds = selectedWeekSpans.value.reduce(
+  const seconds = props.spans.reduce(
     (total, span) => (span.active ? total + differenceInSeconds(span.end, span.start) : total),
     0,
   );
 
-  const results: string[] = [];
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-
-  if (hours > 0) results.push(`${hours}t`);
-  if (minutes > 0) results.push(`${minutes}m`);
-
-  return results.join(" ") || null;
+  return secondsToHumanReadable(seconds) || null;
 });
 </script>

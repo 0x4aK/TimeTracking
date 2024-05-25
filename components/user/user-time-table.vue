@@ -1,10 +1,13 @@
 <template>
   <p-card>
     <template v-if="selectedUserData && selectedDate" #content>
-      <div class="flex justify-center gap-4 text-xl font-semibold">
-        Viikko {{ getWeek(new Date(selectedDate)) }}
-        <time-total />
+      <div class="flex justify-between gap-4">
+        <span class="text-xl font-semibold">Viikko {{ getWeek(new Date(selectedDate)) }}</span>
+        <time-total :spans="selectedWeekSpans">
+          <template #label> <span class="text-xs font-bold">Viikolta: </span> </template>
+        </time-total>
       </div>
+      <p-divider />
       <time-table />
     </template>
     <template v-else #content>
@@ -14,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-const { selectedDate } = useTimeSpans();
+const { selectedDate, selectedWeekSpans } = useTimeSpans();
 const { selectedUserData } = useUsers();
 </script>
 

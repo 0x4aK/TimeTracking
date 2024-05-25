@@ -24,3 +24,16 @@ export const WEEKDAYS = [
   { day: "6", label: "La" },
   { day: "0", label: "Su" },
 ] as const;
+
+export function secondsToHumanReadable(seconds: number) {
+  const results: string[] = [];
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+
+  if (h > 0) results.push(`${h}h`);
+  if (m > 0) results.push(`${m}min`);
+  if (s > 0) results.push(`${s}s`);
+
+  return results.join(" ");
+}

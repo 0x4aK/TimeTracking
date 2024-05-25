@@ -4,6 +4,9 @@
       <div class="flex justify-between gap-4">
         <div><span class="text-xs font-bold">ID:</span> {{ selectedUserData.id }}</div>
         <div><span class="text-xs font-bold">Nimi:</span> {{ selectedUserData.name }}</div>
+        <time-total :spans="selectedDateSpans">
+          <template #label> <span class="text-xs font-bold">Päivältä: </span> </template>
+        </time-total>
       </div>
       <p-divider />
       <time-day-overview />
@@ -16,4 +19,5 @@
 
 <script lang="ts" setup>
 const { selectedUserData } = useUsers();
+const { selectedDateSpans } = useTimeSpans();
 </script>
