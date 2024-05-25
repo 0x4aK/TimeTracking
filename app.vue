@@ -2,9 +2,9 @@
   <main
     class="grid min-h-dvh grid-flow-row auto-rows-min grid-cols-5 gap-2 bg-gradient-to-t from-primary-800 to-primary-400 p-2 md:p-6"
   >
-    <worker-selector class="col-span-5 sm:col-span-2" />
-    <worker-info class="col-span-5 sm:col-span-3" />
-    <worker-time-table class="col-span-5" />
+    <user-selector class="col-span-5 sm:col-span-2" />
+    <user-info class="col-span-5 sm:col-span-3" />
+    <user-time-table class="col-span-5" />
   </main>
 
   <fileupload-overlay />
@@ -12,6 +12,6 @@
 </template>
 
 <script setup lang="ts">
-const { loading: workersLoading } = useWorkers();
-const loading = computed(() => [workersLoading.value].some(Boolean));
+const { loading: usersLoading } = useUserManager();
+const loading = computed(() => [usersLoading.value].some(Boolean));
 </script>

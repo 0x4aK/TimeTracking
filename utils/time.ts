@@ -1,4 +1,4 @@
-import { isSameWeek as DFisSameWeek, getWeek as DFgetWeek } from "date-fns";
+import { isSameWeek as DFisSameWeek, getWeek as DFgetWeek, lightFormat } from "date-fns";
 
 export function isSameWeek(dateLeft: string | number | Date, dateRight: string | number | Date) {
   return DFisSameWeek(dateLeft, dateRight, { weekStartsOn: 1 });
@@ -11,6 +11,9 @@ export function getWeek(date: string | number | Date) {
 export function dayToName(day: string | number) {
   return WEEKDAYS.find((obj) => obj.day == day)?.label;
 }
+
+export const formatTime = (date: Date) => lightFormat(date, "H:mm:ss");
+export const formatDate = (date: Date) => lightFormat(date, "d.M.yyyy");
 
 export const WEEKDAYS = [
   { day: "1", label: "Ma" },

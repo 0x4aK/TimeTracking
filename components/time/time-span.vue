@@ -5,14 +5,12 @@
     :style="spanStyle"
     @click="$emit('toggle')"
   >
-    {{ formatDate(span.start) }} - {{ formatDate(span.end) }}
+    {{ formatTime(span.start) }} - {{ formatTime(span.end) }}
   </button>
 </template>
 
 <script lang="ts" setup>
-import { differenceInMilliseconds, getMinutes, lightFormat } from "date-fns";
-
-const formatDate = (date: Date) => lightFormat(date, "H:mm:ss");
+import { differenceInMilliseconds, getMinutes } from "date-fns";
 
 defineEmits<{ toggle: [] }>();
 const props = defineProps<{ span: TimeSpan }>();

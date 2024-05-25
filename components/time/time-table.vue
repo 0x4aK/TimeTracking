@@ -1,6 +1,6 @@
 <template>
   <p-data-table :value="tableData" :pt="{ bodyRow: 'h-40', column: 'max-w-min' }">
-    <template #empty><div class="text-center">Valitse viikko</div></template>
+    <template #empty><div class="text-center">Ei dataa viikolta</div></template>
     <p-column
       field="clock"
       header="Klo"
@@ -11,7 +11,7 @@
       :key="day.day"
       :field="day.day"
       :header="day.label"
-      :pt="{ bodyCell: 'relative' }"
+      :pt="{ bodyCell: 'relative', headerCell: 'min-w-24' }"
     >
       <template #body="{ data, field }">
         <time-span v-for="span in data[field]" :key="span.spanId" :span="span" @toggle="span.active = !span.active" />
@@ -23,12 +23,12 @@
 <script lang="ts" setup>
 import { getDay, getHours } from "date-fns";
 
-const { selectedWeeksSpans } = useWorkHours();
+const { selectedWeekSpans } = useTimeSpans();
 
 const tableData = computed(() => {
-  if (!selectedWeeksSpans.value) return null;
+  if (!selectedWeekSpans.value) return null;
 
-  const [earliestHour, latestHour] = selectedWeeksSpans.value
+  const [earliestHour, latestHour] = selectedWeekSpans.value
     .reduce(
       ([earliest, latest], { start, end }) => {
         const [startTime, endTime] = [start.getTime(), end.getTime()];
@@ -47,7 +47,7 @@ const tableData = computed(() => {
       ]),
   );
 
-  for (const span of selectedWeeksSpans.value) {
+  for (const span of selectedWeekSpans.value) {
     const hourSpans = timeTableMap.get(getHours(span.start));
     if (hourSpans) hourSpans[getDay(span.start)].push(span);
   }

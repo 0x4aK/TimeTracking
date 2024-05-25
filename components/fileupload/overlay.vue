@@ -31,11 +31,11 @@ function handleDrag({ dataTransfer }: DragEvent) {
   dataTransfer.dropEffect = dataTransfer.items.length === 1 ? "copy" : "none";
 }
 
-const { setWorkersFromCSV } = useWorkers();
+const { setUsersAndTimeSpansFromCSV } = useUserManager();
 function handleFileDrop(e: DragEvent) {
   dragOver.value = false;
   if (!e.dataTransfer || e.dataTransfer.files.length !== 1) return;
-  setWorkersFromCSV(e.dataTransfer.files[0]);
+  setUsersAndTimeSpansFromCSV(e.dataTransfer.files[0]);
 }
 </script>
 

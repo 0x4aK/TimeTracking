@@ -1,3 +1,5 @@
+import { fi } from "./assets/locales/fi.json";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -8,6 +10,7 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       unstyled: true,
+      locale: fi,
     },
     components: {
       prefix: "P",

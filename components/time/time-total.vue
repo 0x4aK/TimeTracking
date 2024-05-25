@@ -1,16 +1,16 @@
 <template>
-  <div v-if="totalTime" class="text-xl font-semibold">Työtunteja viikolta: {{ totalTime }}</div>
+  <div v-if="totalTime">Kokonais aikaa viikolta: {{ totalTime }}</div>
 </template>
 
 <script lang="ts" setup>
 import { differenceInSeconds } from "date-fns";
 
-const { selectedWeeksSpans } = useWorkHours();
+const { selectedWeekSpans } = useTimeSpans();
 
 const totalTime = computed(() => {
-  if (!selectedWeeksSpans.value) return null;
+  if (!selectedWeekSpans.value) return null;
 
-  const seconds = selectedWeeksSpans.value.reduce(
+  const seconds = selectedWeekSpans.value.reduce(
     (total, span) => (span.active ? total + differenceInSeconds(span.end, span.start) : total),
     0,
   );
@@ -19,11 +19,9 @@ const totalTime = computed(() => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
 
-  if (hours > 0) results.push(`${hours}h`);
+  if (hours > 0) results.push(`${hours}t`);
   if (minutes > 0) results.push(`${minutes}m`);
 
   return results.join(" ") || null;
 });
 </script>
-
-<style lang="scss" scoped></style>
