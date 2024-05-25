@@ -9,7 +9,7 @@
         </time-total>
       </div>
       <p-divider />
-      <time-day-overview />
+      <time-overview />
     </template>
     <template v-else #content>
       <div class="flex items-center justify-center font-semibold">Ei valittua käyttäjää</div>
