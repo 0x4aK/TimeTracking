@@ -6,6 +6,7 @@
       <svg-icon :path="mdiArrowRightThin" />
       <svg-icon class="text-red-500" :path="mdiExitRun" />
       <span v-text="formatTime(span.end)"></span>
+
       <p-button class="ml-auto" text @click="span.active = !span.active">
         <svg-icon v-if="span.active" :path="mdiCheckBold" class="text-green-500" />
         <svg-icon v-else :path="mdiCloseThick" class="text-red-500" />
@@ -19,5 +20,3 @@ import { mdiExitRun, mdiWalk, mdiArrowRightThin, mdiCheckBold, mdiCloseThick } f
 
 const { selectedDateSpans } = useTimeSpans();
 </script>
-
-<style lang="scss" scoped></style>

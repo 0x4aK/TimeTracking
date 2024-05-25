@@ -1,9 +1,10 @@
 import { parse as parseDate } from "date-fns";
 
-export type TimeSpan = { spanId: number; userId: number; start: Date; end: Date; active: boolean };
 type UserData = { id: number; name: string };
+type TimeStamp = { date: Date; type: EventType; userId: number };
 export type Users = Map<number, UserData>;
 export type UserTimeSpans = Map<number, TimeSpan[]>;
+export type TimeSpan = { spanId: number; userId: number; start: Date; end: Date; active: boolean };
 
 enum EventType {
   EXIT = 0,
@@ -15,7 +16,6 @@ function parseWorker(words: string[]): [number, UserData] {
   return [+id, { id: +id, name }];
 }
 
-type TimeStamp = { date: Date; type: EventType; userId: number };
 function parseTimestamp(words: string[]): TimeStamp {
   const [timestamp, event, , , id, , , ,] = words;
 

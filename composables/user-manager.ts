@@ -1,5 +1,3 @@
-import { parseCSV } from "~/utils/parsers";
-
 async function setUsersAndTimeSpansFromCSV(file: File) {
   loading.value = true;
   try {

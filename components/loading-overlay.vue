@@ -9,5 +9,3 @@
 <script lang="ts" setup>
 defineProps<{ loading: boolean }>();
 </script>
-
-<style lang="scss" scoped></style>

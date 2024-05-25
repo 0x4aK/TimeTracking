@@ -38,5 +38,3 @@ function handleFileDrop(e: DragEvent) {
   setUsersAndTimeSpansFromCSV(e.dataTransfer.files[0]);
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -7,10 +7,10 @@
       :pt="{ headerCell: 'max-w-min !px-2', bodyCell: 'max-w-min align-top !px-2' }"
     />
     <p-column
-      v-for="day of WEEKDAYS"
-      :key="day.day"
-      :field="day.day"
-      :header="day.label"
+      v-for="[day, label] of WEEKDAYS"
+      :key="day"
+      :field="day.toString()"
+      :header="label"
       :pt="{ bodyCell: 'relative', headerCell: 'min-w-24' }"
     >
       <template #body="{ data, field }">
@@ -43,7 +43,7 @@ const tableData = computed(() => {
       .fill(null)
       .map((_, index) => [
         earliestHour + index,
-        Object.fromEntries(WEEKDAYS.map((day) => [+day.day, new Array<TimeSpan>()])),
+        Object.fromEntries(Array.from(WEEKDAYS.keys()).map((day) => [day, new Array<TimeSpan>()])),
       ]),
   );
 

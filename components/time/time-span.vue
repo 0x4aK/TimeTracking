@@ -20,5 +20,3 @@ const spanStyle = computed(() => ({
   height: `${(differenceInMilliseconds(props.span.end, props.span.start) / (60 * 60 * 1_000)) * 100}%`,
 }));
 </script>
-
-<style lang="scss" scoped></style>

@@ -24,6 +24,7 @@ const spansByDate = computed(() => {
 const selectedDateSpans = computed(
   () => (selectedDate.value !== null && spansByDate.value?.get(formatDate(selectedDate.value))) || null,
 );
+
 const selectedWeekSpans = computed(
   () => (selectedDate.value !== null && spansByWeek.value?.get(getWeek(selectedDate.value))) || null,
 );
