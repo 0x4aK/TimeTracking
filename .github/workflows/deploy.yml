@@ -47,7 +47,7 @@ jobs:
       - name: Build Nuxt app
         run: pnpm dlx nuxt build --preset github_pages
         env:
-          NUXT_APP_BASE_URL: /TimeTracking/
+          NUXT_APP_BASE_URL: /time-tracking/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
