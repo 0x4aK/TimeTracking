@@ -1,11 +1,12 @@
 <template>
   <button
-    class="absolute z-50 min-h-4 w-9/12 max-w-full overflow-clip whitespace-break-spaces rounded-md text-xs"
+    class="absolute inset-x-4 z-50 flex min-h-4 flex-col justify-between overflow-clip rounded-md px-2 text-xs"
     :class="[span.active ? 'bg-primary' : 'bg-primary-highlight-inverse']"
     :style="spanStyle"
     @click="$emit('toggle')"
   >
-    {{ formatTime(span.start) }} - {{ formatTime(span.end) }}
+    <span v-text="formatTime(span.start)" />
+    <span v-text="formatTime(span.end)" />
   </button>
 </template>
 

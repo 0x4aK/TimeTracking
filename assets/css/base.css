@@ -27,7 +27,7 @@
   --primary: var(--primary-500);
   --primary-inverse: var(--surface-0);
   --primary-hover: var(--primary-600);
-  --primary-active-color: var(--primary-600);
+  --primary-active-color: var(--primary-300);
 
   --primary-highlight-opacity: 0.1;
   --primary-highlight-inverse: var(--primary-700);

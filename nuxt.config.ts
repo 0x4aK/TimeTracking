@@ -7,6 +7,10 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/base.css", "~/assets/css/transitions.scss"],
 
+  app: {
+    head: { title: "Time Tracking App" },
+  },
+
   primevue: {
     options: {
       unstyled: true,

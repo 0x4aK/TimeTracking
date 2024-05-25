@@ -11,7 +11,9 @@
       <time-table />
     </template>
     <template v-else #content>
-      <div class="flex h-full items-center justify-center font-semibold">Ei valittua käyttäjää ja päivää</div>
+      <div class="flex h-full items-center justify-center font-semibold">
+        Ei valittua käyttäjää ja päivää
+      </div>
     </template>
   </p-card>
 </template>

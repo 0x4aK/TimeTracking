@@ -18,9 +18,12 @@ export default {
           800: "rgb(var(--primary-800))",
           900: "rgb(var(--primary-900))",
           950: "rgb(var(--primary-950))",
+
           inverse: "rgb(var(--primary-inverse))",
           hover: "rgb(var(--primary-hover))",
+
           "active-color": "rgb(var(--primary-active-color))",
+
           highlight: {
             DEFAULT: "rgb(var(--primary)/var(--primary-highlight-opacity))",
             inverse: "rgb(var(--primary-highlight-inverse))",

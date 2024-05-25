@@ -1,7 +1,9 @@
 <template>
   <div v-if="totalTime">
     <slot name="label">{{ label && `${label}: ` }}</slot>
-    <slot name="time" :value="totalTime">{{ totalTime }}</slot>
+    <slot name="time" :seconds="totalTime">
+      <span class="text-nowrap">{{ secondsToHumanReadable(totalTime) || null }}</span>
+    </slot>
   </div>
 </template>
 
@@ -13,11 +15,9 @@ const props = defineProps<{ spans: TimeSpan[] | null | undefined; label?: string
 const totalTime = computed(() => {
   if (!props.spans) return null;
 
-  const seconds = props.spans.reduce(
+  return props.spans.reduce(
     (total, span) => (span.active ? total + differenceInSeconds(span.end, span.start) : total),
     0,
   );
-
-  return secondsToHumanReadable(seconds) || null;
 });
 </script>

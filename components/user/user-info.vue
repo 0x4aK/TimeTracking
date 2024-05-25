@@ -1,9 +1,11 @@
 <template>
   <p-card>
     <template v-if="selectedUserData" #content>
-      <div class="flex justify-between gap-4">
-        <div><span class="text-xs font-bold">ID:</span> {{ selectedUserData.id }}</div>
-        <div><span class="text-xs font-bold">Nimi:</span> {{ selectedUserData.name }}</div>
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <div><span class="text-xs font-bold">ID:</span> {{ selectedUserData.id }}</div>
+          <div><span class="text-xs font-bold">Nimi:</span> {{ selectedUserData.name }}</div>
+        </div>
         <time-total :spans="selectedDateSpans">
           <template #label> <span class="text-xs font-bold">Päivältä: </span> </template>
         </time-total>

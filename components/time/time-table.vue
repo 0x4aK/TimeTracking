@@ -11,10 +11,19 @@
       :key="day"
       :field="day.toString()"
       :header="label"
-      :pt="{ bodyCell: 'relative', headerCell: 'min-w-24' }"
+      :pt="{
+        headerCell: 'min-w-24',
+        headerContent: 'justify-center',
+        bodyCell: 'relative',
+      }"
     >
       <template #body="{ data, field }">
-        <time-span v-for="span in data[field]" :key="span.spanId" :span="span" @toggle="span.active = !span.active" />
+        <time-span
+          v-for="span in data[field]"
+          :key="span.spanId"
+          :span="span"
+          @toggle="span.active = !span.active"
+        />
       </template>
     </p-column>
   </p-data-table>

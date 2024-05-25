@@ -6,7 +6,7 @@
     choose-label="Lataa cvs"
     auto
     custom-upload
-    @uploader="({files}) => setUsersAndTimeSpansFromCSV(Array.isArray(files) ? files[0] : files)"
+    @uploader="({ files }) => setUsersAndTimeSpansFromCSV(Array.isArray(files) ? files[0] : files)"
   />
 </template>
 
