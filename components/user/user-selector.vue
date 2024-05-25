@@ -1,9 +1,9 @@
 <template>
-  <p-card :pt="{ content: 'flex flex-col gap-2' }">
+  <p-card :pt="{ content: 'flex flex-col gap-4' }">
     <template #content>
-      <div class="flex justify-between">
+      <div class="flex justify-between gap-2">
         <fileupload-input />
-        <p-calendar v-model="selectedDate" date-format="dd.mm.yy" show-week variant="filled">
+        <p-calendar v-model="selectedDate" date-format="dd.mm.yy" variant="filled" show-week show-icon>
           <template #date="{ date }">
             <div class="relative h-full w-full">
               <span
